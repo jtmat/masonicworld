@@ -454,6 +454,40 @@ a {
   }
 }
 
+/* Article pages */
+
+.article-page {
+  max-width: 900px;
+}
+
+.article-page h2 {
+  margin-top: 0;
+  color: #1f2933;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.article-page h3 {
+  margin-top: 30px;
+  color: #8a642d;
+  font-size: 1.35rem;
+}
+
+.back-link {
+  margin-top: 0;
+  margin-bottom: 28px;
+}
+
+.back-link a {
+  color: #8a642d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 
 .site-footer {
