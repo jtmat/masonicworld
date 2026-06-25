@@ -488,6 +488,22 @@ a {
   text-decoration: underline;
 }
 
+/* Resource pages */
+
+.resource-page-image {
+  float: right;
+  margin: 0 0 18px 24px;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .resource-page-image {
+    float: none;
+    display: block;
+    margin: 0 0 22px;
+  }
+}
+
 /* Footer */
 
 .site-footer {
