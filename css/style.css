@@ -595,6 +595,40 @@ a {
   }
 }
 
+/* Contact form */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ded6c8;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+}
+
 /* Footer */
 
 .site-footer {
