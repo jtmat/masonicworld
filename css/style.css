@@ -508,13 +508,11 @@ a {
 
 .table-scroll {
   width: 100%;
-  overflow-x: auto;
   margin-top: 24px;
 }
 
 .simple {
   width: 100%;
-  min-width: 680px;
   border-collapse: collapse;
   font-size: 0.98rem;
 }
@@ -542,14 +540,58 @@ a {
   white-space: nowrap;
 }
 
-@media (max-width: 700px) {
-  .simple {
-    font-size: 0.9rem;
-  }
+/* Phone layout for tables */
 
+@media (max-width: 700px) {
+  .simple,
+  .simple thead,
+  .simple tbody,
+  .simple tr,
   .simple th,
   .simple td {
-    padding: 8px;
+    display: block;
+    width: 100%;
+  }
+
+  .simple tr:first-child {
+    display: none;
+  }
+
+  .simple tr {
+    margin-bottom: 14px;
+    border: 1px solid #ded6c8;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .simple td {
+    border: none;
+    border-bottom: 1px solid #ded6c8;
+    padding: 9px 11px;
+  }
+
+  .simple td:last-child {
+    border-bottom: none;
+  }
+
+  .simple td:nth-child(1)::before {
+    content: "Title: ";
+    font-weight: bold;
+  }
+
+  .simple td:nth-child(2)::before {
+    content: "Author: ";
+    font-weight: bold;
+  }
+
+  .simple td:nth-child(3)::before {
+    content: "Pages: ";
+    font-weight: bold;
+  }
+
+  .simple td:nth-child(3) {
+    text-align: left;
   }
 }
 
