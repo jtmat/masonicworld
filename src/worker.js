@@ -46,8 +46,8 @@ ${message}
 `;
 
     await env.EMAIL.send({
-      to: "jtmat@outlook.com",
-      from: "spamcontrol@barcis.net",
+      to: env.CONTACT_TO_EMAIL,
+  from: env.CONTACT_FROM_EMAIL,
       replyTo: email,
       subject: `MasonicWorld Contact: ${subject}`,
       text: emailText,
