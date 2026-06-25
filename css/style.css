@@ -504,6 +504,55 @@ a {
   }
 }
 
+/* eBook table */
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 24px;
+}
+
+.simple {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.simple th,
+.simple td {
+  padding: 10px 12px;
+  border: 1px solid #ded6c8;
+  text-align: left;
+  vertical-align: top;
+}
+
+.simple th {
+  background: #1f2933;
+  color: #ffffff;
+}
+
+.simple tr:nth-child(even) td {
+  background: #f7f4ec;
+}
+
+.simple td:nth-child(3),
+.simple th:nth-child(3) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .simple {
+    font-size: 0.9rem;
+  }
+
+  .simple th,
+  .simple td {
+    padding: 8px;
+  }
+}
+
 /* Footer */
 
 .site-footer {
