@@ -487,6 +487,58 @@ a {
 .back-link a:hover {
   text-decoration: underline;
 }
+.article-subtitle {
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: #4b5563;
+}
+
+/* Article images */
+
+.article-image {
+  margin: 28px 0;
+}
+
+.article-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.article-image figcaption {
+  margin-top: 8px;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.article-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.article-gallery figure {
+  margin: 0;
+  padding: 12px;
+  background: #f7f4ec;
+  border: 1px solid #ded6c8;
+  border-radius: 10px;
+}
+
+.article-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+@media (max-width: 700px) {
+  .article-gallery {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Resource pages */
 
