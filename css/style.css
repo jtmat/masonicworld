@@ -35,27 +35,21 @@ a {
   gap: 24px;
 }
 
-.site-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.35rem;
-  white-space: nowrap;
-}
+/* Site logo */
 
-.logo-mark {
+.site-logo {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border: 2px solid #b08d57;
-  border-radius: 50%;
-  color: #b08d57;
-  font-size: 0.95rem;
+  text-decoration: none;
 }
+
+.site-logo img {
+  display: block;
+  max-width: 260px;
+  height: auto;
+}
+
+
 
 .main-nav {
   display: flex;
