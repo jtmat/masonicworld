@@ -12,7 +12,7 @@ if (response.status !== 404) {
   return response;
 }
 
-const notFoundUrl = new URL("/404.html", url.origin);
+const notFoundUrl = new URL("/404", url.origin);
 const notFoundRequest = new Request(notFoundUrl.toString(), request);
 const notFoundResponse = await env.ASSETS.fetch(notFoundRequest);
 
