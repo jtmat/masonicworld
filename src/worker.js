@@ -101,7 +101,11 @@ async function verifyTurnstile(token, request, env) {
 
 function clean(value) {
   if (!value) return "";
-  return String(value).trim().slice(0, 5000);
+  return String(value)
+    .replace(/[ \t]+/g, " ")
+    .replace(/\r\n/g, "\n")
+    .trim()
+    .slice(0, 5000);
 }
 
 function htmlResponse(title, message, status = 200) {
