@@ -6,20 +6,7 @@ export default {
       return handleContactForm(request, env);
     }
 
-   const response = await env.ASSETS.fetch(request);
-
-if (response.status !== 404) {
-  return response;
-}
-
-const notFoundUrl = new URL("/404.html", url.origin);
-const notFoundRequest = new Request(notFoundUrl.toString(), request);
-const notFoundResponse = await env.ASSETS.fetch(notFoundRequest);
-
-return new Response(notFoundResponse.body, {
-  status: 404,
-  headers: notFoundResponse.headers,
-});
+    return env.ASSETS.fetch(request);
   },
 };
 
