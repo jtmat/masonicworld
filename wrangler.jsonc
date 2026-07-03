@@ -1,0 +1,16 @@
+{
+  "name": "masonicworld",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-06-25",
+
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ]
+}
