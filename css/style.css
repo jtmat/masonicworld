@@ -110,6 +110,14 @@ a {
   text-decoration: none;
 }
 
+.nav-dropdown-toggle {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 /* Hero */
 
 .hero {

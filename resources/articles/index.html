@@ -6,6 +6,30 @@
   <title>Masonic Articles | MasonicWorld.com</title>
   <link rel="stylesheet" href="/css/style.css" />
 <link rel="icon" type="image/png" href="/images/favicon.png">
+  <style>
+    .article-search {
+      margin: 1.5rem 0;
+    }
+
+    .article-search label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    .article-search input {
+      box-sizing: border-box;
+      width: min(100%, 32rem);
+      padding: 0.7rem 0.8rem;
+      border: 1px solid #777;
+      border-radius: 4px;
+      font: inherit;
+    }
+
+    .article-search-status {
+      margin: 0.45rem 0 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,7 +45,7 @@
       <a href="/">Home</a>
 
   <div class="nav-dropdown">
-    <a href="/resources/" class="nav-dropdown-toggle">Resources</a>
+    <button type="button" class="nav-dropdown-toggle">Resources</button>
 
     <div class="nav-dropdown-menu">
       <a href="/resources/articles/">Articles</a>
@@ -37,7 +61,6 @@
 <a href="/links/">Links</a>
   <a href="/about/">About</a>
   <a href="/join/">Join Freemasonry</a>
-  <a href="/contact/">Contact</a>
 </nav>
     </div>
   </header>
@@ -54,14 +77,24 @@
       height="160" 
 	 
     />
-   
 
 <p>
   Explore a collection of articles covering Masonic history, symbolism, education, leadership, lodge administration, and related topics. 
   The articles are provided for online reading and reference.
 </p>
 <BR clear="right">
-    <ul>
+    <div class="article-search">
+      <label for="article-search">Search article titles</label>
+      <input
+        type="search"
+        id="article-search"
+        placeholder="Enter a title or keyword"
+        autocomplete="off"
+      />
+      <p id="article-search-status" class="article-search-status" aria-live="polite"></p>
+    </div>
+
+    <ul id="article-list">
 				<li>
 				<p><a href="files/25-Landmarks-Of-Freemasonry.htm">25 Landmarks 
 				Of Freemasonry</a></p>
@@ -2363,5 +2396,33 @@
 
   </div>
 </footer>
+<script>
+  const searchInput = document.getElementById("article-search");
+  const articleItems = Array.from(document.querySelectorAll("#article-list > li"));
+  const searchStatus = document.getElementById("article-search-status");
+
+  function filterArticles() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    articleItems.forEach((item) => {
+      const title = item.textContent.toLowerCase();
+      const matches = title.includes(searchTerm);
+
+      item.hidden = !matches;
+      if (matches) visibleCount++;
+    });
+
+    if (visibleCount === 0) {
+      searchStatus.textContent = "No articles found.";
+    } else {
+      searchStatus.textContent =
+        visibleCount + (visibleCount === 1 ? " article" : " articles");
+    }
+  }
+
+  searchInput.addEventListener("input", filterArticles);
+  filterArticles();
+</script>
 </body>
 </html>
