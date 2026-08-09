@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Test your knowledge with questions 401 through 450 from Freemasonry at a Glance.">
+  <title>Masonic Firsts, Famous Masons, Women and Co-Masonry Test | MasonicWorld.com</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-name" href="/">MasonicWorld.com</a>
+      <span class="section-name">Masonic Tests</span>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <noscript>
+      <p class="notice">This test requires JavaScript to run.</p>
+    </noscript>
+
+    <section id="start-screen" class="test-card" aria-labelledby="test-title">
+      <p class="eyebrow">Knowledge Test</p>
+      <h1 id="test-title">Masonic Firsts, Famous Masons, Women and Co-Masonry</h1>
+      <p class="intro">Answer 10 multiple-choice questions selected from our question bank. Questions and answers are shuffled each time you take the test.</p>
+
+      <ul class="test-details" aria-label="Test details">
+        <li><strong id="question-count">10</strong> questions</li>
+        <li>Four choices per question</li>
+        <li>Results shown at the end</li>
+      </ul>
+
+      <button id="start-button" class="button button-primary" type="button">Start Test</button>
+    </section>
+
+    <section id="question-screen" class="test-card" aria-labelledby="question-text" hidden>
+      <div class="progress-row">
+        <p id="progress-text">Question 1 of 10</p>
+        <p id="answered-text">0 answered</p>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <fieldset class="question-fieldset">
+        <legend id="question-text">Question text</legend>
+        <div id="answer-list" class="answer-list"></div>
+      </fieldset>
+
+      <div class="question-actions">
+        <button id="previous-button" class="button button-secondary" type="button">Previous</button>
+        <button id="next-button" class="button button-primary" type="button" disabled>Next Question</button>
+      </div>
+    </section>
+
+    <section id="results-screen" class="test-card" aria-labelledby="results-title" hidden>
+      <p class="eyebrow">Test Complete</p>
+      <h1 id="results-title">Your Results</h1>
+
+      <div class="score-box" aria-live="polite">
+        <strong id="score-percent">0%</strong>
+        <span id="score-text">0 out of 10 correct</span>
+      </div>
+
+      <p id="result-message" class="result-message"></p>
+      <div id="review-section"></div>
+
+      <button id="retake-button" class="button button-primary" type="button">Take Another Test</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; MasonicWorld.com</p>
+    </div>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="test.js"></script>
+</body>
+</html>
