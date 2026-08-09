@@ -1,0 +1,10 @@
+Total of 1905 MC questions.
+
+For each 50-question category, we’ll aim for:
+
+25 easy
+15 medium
+10 hard
+
+A standard 10-question test can then draw 5 easy, 3 medium, and 2 hard questions.
+
