@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play the Masonic Symbolism Challenge with two to four players or teams using Entered Apprentice, Fellow Craft, Master Mason, or all three degree question banks.">
+  <title>Masonic Symbolism Challenge | MasonicWorld.com</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-name" href="/">MasonicWorld.com</a>
+      <span class="section-name">Masonic Tests</span>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <noscript>
+      <p class="notice">This game requires JavaScript to run.</p>
+    </noscript>
+
+    <section id="setup-screen" class="game-card" aria-labelledby="game-title">
+      <p class="eyebrow">Team Challenge</p>
+      <h1 id="game-title">Masonic Symbolism Challenge</h1>
+      <p class="intro">Choose a degree, divide into two to four players or teams, and take turns answering questions from <em>Symbolism of the Three Degrees</em>.</p>
+
+      <form id="game-setup" class="setup-form">
+        <fieldset class="setup-section">
+          <legend>1. Choose questions</legend>
+          <div class="choice-grid degree-grid">
+            <label class="choice-card">
+              <input type="radio" name="degree" value="EA" checked>
+              <span><strong>Entered Apprentice</strong><small>EA questions only</small></span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="degree" value="FC">
+              <span><strong>Fellow Craft</strong><small>FC questions only</small></span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="degree" value="MM">
+              <span><strong>Master Mason</strong><small>MM questions only</small></span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="degree" value="ALL">
+              <span><strong>All Three Degrees</strong><small>EA, FC, and MM</small></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="setup-section">
+          <legend>2. Choose players or teams</legend>
+          <div class="segmented-options" aria-label="Number of players or teams">
+            <label><input type="radio" name="player-count" value="2" checked><span>2</span></label>
+            <label><input type="radio" name="player-count" value="3"><span>3</span></label>
+            <label><input type="radio" name="player-count" value="4"><span>4</span></label>
+          </div>
+          <div id="team-name-fields" class="team-name-fields"></div>
+        </fieldset>
+
+        <fieldset class="setup-section">
+          <legend>3. Questions per team</legend>
+          <div class="segmented-options wide-options" aria-label="Questions per team">
+            <label><input type="radio" name="questions-per-team" value="10" checked><span>10</span></label>
+            <label><input type="radio" name="questions-per-team" value="15"><span>15</span></label>
+            <label><input type="radio" name="questions-per-team" value="20"><span>20</span></label>
+            <label><input type="radio" name="questions-per-team" value="25"><span>25</span></label>
+          </div>
+          <p id="game-size-summary" class="game-size-summary">2 teams × 10 questions = 20 questions total</p>
+        </fieldset>
+
+        <button class="button button-primary start-button" type="submit">Start Game</button>
+      </form>
+    </section>
+
+    <section id="question-screen" hidden>
+      <div id="scoreboard" class="scoreboard" aria-label="Scoreboard"></div>
+
+      <article class="game-card question-card" aria-labelledby="question-text">
+        <div class="turn-row">
+          <div>
+            <p class="eyebrow">Current Turn</p>
+            <h2 id="turn-name" class="turn-name">Team 1</h2>
+          </div>
+          <div class="question-progress">
+            <span id="progress-text">Question 1 of 20</span>
+            <span id="team-progress-text">Team 1: 1 of 10</span>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <h1 id="question-text" class="question-text" tabindex="-1">Question text</h1>
+        <div id="answer-list" class="answer-list" role="group" aria-label="Answer choices"></div>
+
+        <div id="answer-feedback" class="answer-feedback" aria-live="polite" hidden></div>
+        <button id="continue-button" class="button button-primary continue-button" type="button" hidden>Continue</button>
+      </article>
+    </section>
+
+    <section id="results-screen" class="game-card" aria-labelledby="results-title" hidden>
+      <p class="eyebrow">Game Complete</p>
+      <h1 id="results-title">Final Scoreboard</h1>
+      <p id="winner-message" class="winner-message"></p>
+      <div id="final-standings" class="final-standings"></div>
+      <div class="results-actions">
+        <button id="play-again-button" class="button button-primary" type="button">Play Again</button>
+        <button id="change-setup-button" class="button button-secondary" type="button">Change Setup</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; MasonicWorld.com</p>
+    </div>
+  </footer>
+
+  <script src="questions-ea.js"></script>
+  <script src="questions-fc.js"></script>
+  <script src="questions-mm.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
