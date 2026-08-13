@@ -1,0 +1,185 @@
+*{box-sizing:border-box}
+:root{
+  --border:#cfcfcf;
+  --panel:#ffffff;
+  --bg:#f4f4f4;
+  --text:#222;
+  --muted:#666;
+  --accent:#1f4b3f;
+  --accent2:#e9efe9;
+}
+html,body{margin:0;height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:1px solid #aaa;background:#fff;border-radius:6px;padding:8px 11px}
+button:hover{background:#f2f2f2}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.danger{color:#8a1d1d;border-color:#c99}
+button.small{padding:4px 8px;font-size:.9rem}
+.app-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#fff;border-bottom:1px solid var(--border);gap:12px}
+.app-header h1{font-size:1.3rem;margin:0}
+.app-header .sub{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.app-shell{display:grid;grid-template-columns:280px minmax(500px,1fr) 260px;height:calc(100vh - 74px)}
+.sidebar,.inspector{overflow:auto;padding:12px;background:#fafafa}
+.sidebar{border-right:1px solid var(--border)}
+.inspector{border-left:1px solid var(--border)}
+.workspace{min-width:0;display:flex;flex-direction:column}
+.workspace-toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px;background:#fff;border-bottom:1px solid var(--border)}
+.tool-group{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:12px}
+.panel h2{font-size:1rem;margin:0 0 10px}
+.section-heading{display:flex;justify-content:space-between;align-items:center}
+label{display:block;font-size:.9rem;margin-bottom:10px}
+input,select,textarea{width:100%;margin-top:4px;border:1px solid #aaa;border-radius:5px;padding:7px;background:#fff}
+.canvas-wrap{flex:1;overflow:auto;padding:16px}
+.room-canvas{
+  position:relative;
+  width:1200px;
+  height:800px;
+  min-width:1200px;
+  min-height:800px;
+  background:
+    linear-gradient(#ececec 1px, transparent 1px),
+    linear-gradient(90deg,#ececec 1px,transparent 1px),
+    #fff;
+  background-size:25px 25px;
+  border:1px solid #aaa;
+  box-shadow:0 1px 6px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+.statusbar{display:flex;justify-content:space-between;padding:7px 12px;border-top:1px solid var(--border);background:#fff;color:var(--muted);font-size:.85rem}
+.sessions-list,.people-list{display:flex;flex-direction:column;gap:6px}
+.session-row,.person-row{border:1px solid var(--border);background:#fff;border-radius:6px;padding:8px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.session-row.active{border-color:var(--accent);background:var(--accent2)}
+.person-row.selected{outline:2px solid var(--accent)}
+.person-row[draggable="true"]{cursor:grab}
+.person-main{min-width:0}
+.person-name{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person-meta{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{padding:3px 6px}
+.hint,.muted{font-size:.83rem;color:var(--muted)}
+.help{margin:0;padding-left:20px;font-size:.88rem}
+.help li{margin:5px 0}
+
+.layout-item{
+  position:absolute;
+  user-select:none;
+  touch-action:none;
+  transform-origin:center;
+}
+.layout-item.selected{outline:2px solid #1f4b3f;outline-offset:3px}
+.table-body{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #444;
+  background:#f0eadf;
+  font-weight:700;
+  text-align:center;
+  padding:8px;
+}
+.layout-item.round .table-body{border-radius:50%}
+.layout-item.square .table-body{border-radius:8px}
+.layout-item.rectangle .table-body{border-radius:8px}
+.table-label{pointer-events:none}
+.seat{
+  position:absolute;
+  width:58px;
+  height:34px;
+  border-radius:7px;
+  border:1px solid #777;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:11px;
+  padding:2px;
+  cursor:pointer;
+  overflow:hidden;
+  z-index:4;
+  transform:translate(-50%,-50%);
+}
+.seat.occupied{background:#eaf2ea;border-color:#486b57}
+.seat.target{outline:2px dashed #1f4b3f}
+.room-object{
+  position:absolute;
+  inset:0;
+  border:2px dashed #777;
+  background:rgba(230,230,230,.78);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:700;
+  text-align:center;
+  padding:6px;
+}
+.resize-handle,.rotate-handle{
+  position:absolute;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid #1f4b3f;
+  z-index:10;
+  display:none;
+}
+.layout-item.selected .resize-handle,
+.layout-item.selected .rotate-handle{
+  display:block;
+}
+.resize-handle{
+  right:6px;
+  bottom:6px;
+  cursor:nwse-resize;
+}
+.rotate-handle{
+  left:50%;
+  top:-30px;
+  transform:translateX(-50%);
+  cursor:grab;
+}
+.rotate-handle:after{
+  content:"";
+  position:absolute;
+  left:6px;
+  top:14px;
+  width:2px;
+  height:14px;
+  background:#1f4b3f
+}
+dialog{border:none;border-radius:10px;box-shadow:0 15px 45px rgba(0,0,0,.25);min-width:320px}
+dialog::backdrop{background:rgba(0,0,0,.35)}
+.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+
+@media (max-width:1000px){
+  .app-shell{grid-template-columns:240px minmax(500px,1fr)}
+  .inspector{display:none}
+}
+@media (max-width:760px){
+  .app-header{align-items:flex-start;flex-direction:column}
+  .app-shell{display:block;height:auto}
+  .sidebar{border-right:none}
+  .workspace{min-height:700px}
+  .inspector{display:block;border-left:none}
+  .room-canvas{width:1000px;min-width:1000px}
+}
+
+@media print{
+  body{background:#fff}
+  .app-header,.sidebar,.inspector,.workspace-toolbar,.statusbar{display:none!important}
+  .app-shell{display:block;height:auto}
+  .workspace{display:block}
+  .canvas-wrap{padding:0;overflow:visible}
+  .room-canvas{
+    transform:scale(.72);
+    transform-origin:top left;
+    border:none;
+    box-shadow:none;
+    background:#fff;
+  }
+  .layout-item.selected{outline:none}
+  .resize-handle,.rotate-handle{display:none}
+}

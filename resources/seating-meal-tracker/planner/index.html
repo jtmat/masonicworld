@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MasonicWorld Lodge Event Seating Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Lodge Event Seating Planner</h1>
+      <p class="sub">MasonicWorld.com</p>
+    </div>
+    <div class="toolbar">
+      <button id="newEventBtn">New Event</button>
+      <button id="openEventBtn">Open Event</button>
+      <button id="saveEventBtn" class="primary">Save Event</button>
+      <button id="mealSheetBtn">Print Meal Sheet</button>
+      <button id="mealCsvBtn">Meal CSV</button>
+      <button id="printBtn">Print / PDF</button>
+      <input id="openFileInput" type="file" accept=".mwseat,.json,application/json" hidden>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Event</h2>
+        <label>Event name
+          <input id="eventName" type="text" placeholder="Christmas Party 2026">
+        </label>
+        <label>Event date
+          <input id="eventDate" type="date">
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>Sessions / Plans</h2>
+          <button id="addSessionBtn" class="small">+ Add</button>
+        </div>
+        <div id="sessionsList" class="sessions-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <h2>People</h2>
+          <button id="addPersonBtn" class="small">+ Add</button>
+        </div>
+        <div id="peopleList" class="people-list"></div>
+        <p class="hint">Drag a person onto a seat, or click a person and then click a seat.</p>
+      </section>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-toolbar">
+        <div class="tool-group">
+          <strong>Add table:</strong>
+          <button data-add-table="round">Round</button>
+          <button data-add-table="square">Square</button>
+          <button data-add-table="rectangle">Rectangle</button>
+        </div>
+        <div class="tool-group">
+          <strong>Add room object:</strong>
+          <select id="roomObjectType">
+            <option value="Head Table">Head Table</option>
+            <option value="Podium / Lectern">Podium / Lectern</option>
+            <option value="Stage">Stage</option>
+            <option value="Entrance">Entrance</option>
+            <option value="Dance Floor">Dance Floor</option>
+          </select>
+          <button id="addRoomObjectBtn">Add</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <div id="roomCanvas" class="room-canvas" tabindex="0" aria-label="Event room layout"></div>
+      </div>
+
+      <div class="statusbar">
+        <span id="statusText">Ready.</span>
+        <span id="saveStatus">Not saved yet</span>
+      </div>
+    </main>
+
+    <aside class="inspector">
+      <section class="panel">
+        <h2>Selected Item</h2>
+        <div id="emptyInspector" class="muted">Select a table, room object, or person.</div>
+
+        <div id="tableInspector" hidden>
+          <label>Table name / number
+            <input id="tableName" type="text">
+          </label>
+          <label>Seats
+            <input id="tableSeats" type="number" min="1" max="24" step="1">
+          </label>
+          <label>Width
+            <input id="tableWidth" type="number" min="80" max="700" step="10">
+          </label>
+          <label>Height
+            <input id="tableHeight" type="number" min="80" max="700" step="10">
+          </label>
+          <label>Rotation
+            <input id="tableRotation" type="number" min="-180" max="180" step="5">
+          </label>
+          <button id="deleteTableBtn" class="danger">Delete Table</button>
+        </div>
+
+        <div id="objectInspector" hidden>
+          <label>Label
+            <input id="objectLabel" type="text">
+          </label>
+          <label>Width
+            <input id="objectWidth" type="number" min="60" max="800" step="10">
+          </label>
+          <label>Height
+            <input id="objectHeight" type="number" min="40" max="800" step="10">
+          </label>
+          <label>Rotation
+            <input id="objectRotation" type="number" min="-180" max="180" step="5">
+          </label>
+          <button id="deleteObjectBtn" class="danger">Delete Object</button>
+        </div>
+
+        <div id="personInspector" hidden>
+          <label>Name
+            <input id="personName" type="text">
+          </label>
+          <label>Meal
+            <input id="personMeal" type="text" placeholder="Beef, chicken, vegetarian...">
+          </label>
+          <label>Short note
+            <textarea id="personNote" rows="3" placeholder="Optional"></textarea>
+          </label>
+          <button id="removeSeatAssignmentBtn">Remove From Seat</button>
+          <button id="deletePersonBtn" class="danger">Delete Person</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>How to Use</h2>
+        <ol class="help">
+          <li>Create an event and session.</li>
+          <li>Add tables and room objects.</li>
+          <li>Add people and meal choices.</li>
+          <li>Drag people onto seats.</li>
+          <li>Move tables into position.</li>
+          <li>Save the event file often.</li>
+        </ol>
+      </section>
+    </aside>
+  </div>
+
+  <dialog id="personDialog">
+    <form method="dialog" id="personForm">
+      <h2>Add Person</h2>
+      <label>Name
+        <input id="newPersonName" type="text" required autofocus>
+      </label>
+      <label>Meal
+        <input id="newPersonMeal" type="text" placeholder="Optional">
+      </label>
+      <label>Short note
+        <textarea id="newPersonNote" rows="3" placeholder="Optional"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button value="default" id="confirmAddPerson" class="primary">Add Person</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="sessionDialog">
+    <form method="dialog" id="sessionForm">
+      <h2>Add Session / Plan</h2>
+      <label>Name
+        <input id="newSessionName" type="text" placeholder="Saturday Banquet" required autofocus>
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button value="default" id="confirmAddSession" class="primary">Add Session</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
